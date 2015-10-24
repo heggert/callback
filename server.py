@@ -63,8 +63,17 @@ def call():
 @app.route('/', methods=['GET', 'POST'])
 def welcome():
   resp = twilio.twiml.Response()
-  resp.say("Welcome to Twilio bitch")
+  resp.say("Welcome to Twilio")
   return str(resp)
+  
+  
+@app.route('/enterqueue', methods=['GET', 'POST'])
+def enter():
+  resp = twilio.twiml.Response()
+  resp.say("You will join the wait queue")
+  resp.enqueue("wait")
+  return str(resp)
+
 
 if __name__ == "__main__":
   port = int(os.environ.get("PORT", 5000))
