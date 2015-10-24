@@ -63,7 +63,7 @@ def call():
 @app.route('/', methods=['GET', 'POST'])
 def welcome():
   resp = twilio.twiml.Response()
-  resp.say("Welcome to Twilio")
+  resp.say("Welcome to Twilio bitch")
   return str(resp)
 
 if __name__ == "__main__":
