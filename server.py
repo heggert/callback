@@ -72,6 +72,7 @@ def welcome():
   
 @app.route('/enterqueue', methods=['GET', 'POST'])
 def enterqueue():
+  global myGlobal
   if myGlobal == 0:
   resp = twilio.twiml.Response()
   resp.say("You will join the wait queue as number")
