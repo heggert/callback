@@ -78,6 +78,7 @@ def enterqueue():
   global isQueueFull
   global myValue
   print 'roulette' + myValue
+  print 'try this' + request.form['CurrentQueueSize']
   resp1 = twilio.twiml.Response()
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
