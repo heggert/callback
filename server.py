@@ -72,6 +72,8 @@ def welcome():
 @app.route('/roulette', methods=['GET', 'POST'])
 def enterqueue():
   global isQueueFull
+  resp1 = twilio.twiml.Response()
+  print request.form['CurrentQueueSize']
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
     resp.say("You will join the wait queue as number")
