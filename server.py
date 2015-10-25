@@ -78,7 +78,7 @@ def enterqueue():
 def leavequeue():
   resp = twilio.twiml.Response()
   resp.say("You will talk to a person")
-  with response.dial() as dial:
+  with resp.dial() as dial:
       dial.queue("wait")
   return str(resp)
 
