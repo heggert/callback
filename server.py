@@ -48,7 +48,7 @@ def call():
   resp = twilio.twiml.Response()
   global myValue
   myValue = request.form['CurrentQueueSize']
-  print 'FUCK' + myValue
+  print 'call' + myValue
   from_value = request.values.get('From')
   to = request.values.get('To')
   if not (from_value and to):
@@ -77,7 +77,7 @@ def welcome():
 def enterqueue():
   global isQueueFull
   global myValue
-  print 'FUCK' + myValue
+  print 'roulette' + myValue
   resp1 = twilio.twiml.Response()
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
