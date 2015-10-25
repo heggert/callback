@@ -76,6 +76,7 @@ def welcome():
 def enterqueue():
   global isQueueFull
   resp1 = twilio.twiml.Response()
+  global myValue
   print myValue
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
