@@ -16,7 +16,6 @@ CLIENT = 'jenny'
 app = Flask(__name__)
 
 isQueueFull = 0
-myValue = 'shit'
 
 @app.route('/token')
 def token():
@@ -46,9 +45,6 @@ def call():
   """           from PSTN, To value is ignored and call is     """
   """           routed to client named CLIENT                  """
   resp = twilio.twiml.Response()
-  global myValue
-  myValue = request.form['CurrentQueueSize']
-  print 'call' + myValue
   from_value = request.values.get('From')
   to = request.values.get('To')
   if not (from_value and to):
@@ -76,9 +72,6 @@ def welcome():
 @app.route('/roulette', methods=['GET', 'POST'])
 def enterqueue():
   global isQueueFull
-  global myValue
-  print 'roulette' + myValue
-  print 'try this' + request.form['CurrentQueueSize']
   resp1 = twilio.twiml.Response()
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
