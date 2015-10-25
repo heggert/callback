@@ -68,12 +68,19 @@ def welcome():
   
   
 @app.route('/enterqueue', methods=['GET', 'POST'])
-def enter():
+def enterqueue():
   resp = twilio.twiml.Response()
   resp.say("You will join the wait queue")
   resp.enqueue("wait")
   return str(resp)
-
+  
+@app.route('/leavequeue', methods=['GET', 'POST'])
+def leavequeue():
+  resp = twilio.twiml.Response()
+  resp.say("You will talk to a person")
+  with response.dial() as dial:
+      dial.queue("wait")
+  return str(resp)
 
 if __name__ == "__main__":
   port = int(os.environ.get("PORT", 5000))
