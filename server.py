@@ -73,7 +73,7 @@ def welcome():
 def enterqueue():
   global isQueueFull
   resp1 = twilio.twiml.Response()
-  print request.form['CurrentQueueSize']
+#  print request.form['CurrentQueueSize']
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
     resp.say("You will join the wait queue as number")
