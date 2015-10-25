@@ -70,7 +70,7 @@ def welcome():
 # Configure this number to a toll-free Twilio number to accept incoming calls.
 @app.route('/call', methods=['POST'])
 def call():
-    response = twiml.Response()
+    response = twilio.twiml.Response()
     response.say("Thank you for calling this demonstration of Twilio Queue")
     response.enqueue("Queue Demo", waitUrl='/wait')
     return str(response)
@@ -80,7 +80,7 @@ def call():
 # play the sweet, soothing sounds of Twilio's coffeeshop collection.
 @app.route('/wait', methods=['POST'])
 def wait():
-    response = twiml.Response()
+    response = twilio.twiml.Response()
     response.say("You are number %s in line." % request.form['QueuePosition'])
     return str(response)
 
@@ -88,7 +88,7 @@ def wait():
 # Connect to support queue - assign to Twilio number for agent to call.
 @app.route('/dial', methods=['POST'])
 def dial():
-    response = twiml.Response()
+    response = twilio.twiml.Response()
     with response.dial() as dial:
         dial.queue("Queue Demo")
     return str(response)
