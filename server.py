@@ -15,8 +15,7 @@ CLIENT = 'jenny'
 
 app = Flask(__name__)
 
-
-myGlobal = 0
+isQueueFull = 0
 
 @app.route('/token')
 def token():
@@ -70,29 +69,22 @@ def welcome():
   return str(resp)
   
   
-@app.route('/enterqueue', methods=['GET', 'POST'])
+@app.route('/roulette', methods=['GET', 'POST'])
 def enterqueue():
-  global myGlobal
-  if myGlobal == 0:
+  global isQueueFull
+  if isQueueFull == 0:
     resp = twilio.twiml.Response()
     resp.say("You will join the wait queue as number")
     resp.enqueue("wait")
-    myGlobal = 1
+    isQueueFull = 1
   else:
-    myGlobal = 0
+    isQueueFull = 0
     resp = twilio.twiml.Response()
     resp.say("You will talk to a person")
     with resp.dial() as dial:
         dial.queue("wait")
   return str(resp)
-  
-@app.route('/leavequeue', methods=['GET', 'POST'])
-def leavequeue():
-  resp = twilio.twiml.Response()
-  resp.say("You will talk to a person")
-  with resp.dial() as dial:
-      dial.queue("wait")
-  return str(resp)
+
 
 if __name__ == "__main__":
   port = int(os.environ.get("PORT", 5000))
