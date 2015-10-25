@@ -15,6 +15,9 @@ CLIENT = 'jenny'
 
 app = Flask(__name__)
 
+
+myGlobal = 0
+
 @app.route('/token')
 def token():
   account_sid = os.environ.get("ACCOUNT_SID", ACCOUNT_SID)
@@ -69,6 +72,7 @@ def welcome():
   
 @app.route('/enterqueue', methods=['GET', 'POST'])
 def enterqueue():
+  if myGlobal == 0:
   resp = twilio.twiml.Response()
   resp.say("You will join the wait queue as number")
   resp.enqueue("wait")
