@@ -70,7 +70,7 @@ def welcome():
 @app.route('/enterqueue', methods=['GET', 'POST'])
 def enterqueue():
   resp = twilio.twiml.Response()
-  resp.say("You will join the wait queue")
+  resp.say("You will join the wait queue as number %s in line" % request.form['QueuePosition'])
   resp.enqueue("wait")
   return str(resp)
   
