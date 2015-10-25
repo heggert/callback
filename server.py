@@ -74,9 +74,9 @@ def welcome():
 def enterqueue():
   global myGlobal
   if myGlobal == 0:
-  resp = twilio.twiml.Response()
-  resp.say("You will join the wait queue as number")
-  resp.enqueue("wait")
+    resp = twilio.twiml.Response()
+    resp.say("You will join the wait queue as number")
+    resp.enqueue("wait")
   return str(resp)
   
 @app.route('/leavequeue', methods=['GET', 'POST'])
