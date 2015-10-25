@@ -34,31 +34,31 @@ def token():
 
   # This returns a token to use with Twilio based on the account and capabilities defined above
   return capability.generate()
-#
-# @app.route('/call', methods=['GET', 'POST'])
-# def call():
-#   """ This method routes calls from/to client                  """
-#   """ Rules: 1. From can be either client:name or PSTN number  """
-#   """        2. To value specifies target. When call is coming """
-#   """           from PSTN, To value is ignored and call is     """
-#   """           routed to client named CLIENT                  """
-#   resp = twilio.twiml.Response()
-#   from_value = request.values.get('From')
-#   to = request.values.get('To')
-#   if not (from_value and to):
-#     return str(resp.say("Invalid request"))
-#   from_client = from_value.startswith('client')
-#   caller_id = os.environ.get("CALLER_ID", CALLER_ID)
-#   if not from_client:
-#     # PSTN -> client
-#     resp.dial(callerId=from_value).client(CLIENT)
-#   elif to.startswith("client:"):
-#     # client -> client
-#     resp.dial(callerId=from_value).client(to[7:])
-#   else:
-#     # client -> PSTN
-#     resp.dial(to, callerId=caller_id)
-#   return str(resp)
+
+@app.route('/call', methods=['GET', 'POST'])
+def call():
+  """ This method routes calls from/to client                  """
+  """ Rules: 1. From can be either client:name or PSTN number  """
+  """        2. To value specifies target. When call is coming """
+  """           from PSTN, To value is ignored and call is     """
+  """           routed to client named CLIENT                  """
+  resp = twilio.twiml.Response()
+  from_value = request.values.get('From')
+  to = request.values.get('To')
+  if not (from_value and to):
+    return str(resp.say("Invalid request"))
+  from_client = from_value.startswith('client')
+  caller_id = os.environ.get("CALLER_ID", CALLER_ID)
+  if not from_client:
+    # PSTN -> client
+    resp.dial(callerId=from_value).client(CLIENT)
+  elif to.startswith("client:"):
+    # client -> client
+    resp.dial(callerId=from_value).client(to[7:])
+  else:
+    # client -> PSTN
+    resp.dial(to, callerId=caller_id)
+  return str(resp)
 
 @app.route('/', methods=['GET', 'POST'])
 def welcome():
@@ -67,31 +67,12 @@ def welcome():
   return str(resp)
   
   
-# Configure this number to a toll-free Twilio number to accept incoming calls.
-@app.route('/call', methods=['POST'])
-def call():
-    response = twilio.twiml.Response()
-    response.say("Thank you for calling this demonstration of Twilio Queue")
-    response.enqueue("Queue Demo", waitUrl='/wait')
-    return str(response)
-
-
-# Configure waiting room to notify user of current position in the queue and
-# play the sweet, soothing sounds of Twilio's coffeeshop collection.
-@app.route('/wait', methods=['POST'])
-def wait():
-    response = twilio.twiml.Response()
-    response.say("You are number %s in line." % request.form['QueuePosition'])
-    return str(response)
-
-
-# Connect to support queue - assign to Twilio number for agent to call.
-@app.route('/dial', methods=['POST'])
-def dial():
-    response = twilio.twiml.Response()
-    with response.dial() as dial:
-        dial.queue("Queue Demo")
-    return str(response)
+@app.route('/enterqueue', methods=['GET', 'POST'])
+def enter():
+  resp = twilio.twiml.Response()
+  resp.say("You will join the wait queue")
+  resp.enqueue("wait")
+  return str(resp)
 
 
 if __name__ == "__main__":
