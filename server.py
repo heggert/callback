@@ -45,6 +45,7 @@ def call():
   """           from PSTN, To value is ignored and call is     """
   """           routed to client named CLIENT                  """
   resp = twilio.twiml.Response()
+  print request.form['CurrentQueueSize']
   from_value = request.values.get('From')
   to = request.values.get('To')
   if not (from_value and to):
@@ -76,7 +77,7 @@ def enterqueue():
 #  print request.form['CurrentQueueSize']
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
-    resp.say("You will join the wait queue as number")
+    resp.say("Please hold.")
     resp.enqueue("wait")
     isQueueFull = 1
   else:
