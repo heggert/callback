@@ -16,7 +16,7 @@ CLIENT = 'jenny'
 app = Flask(__name__)
 
 isQueueFull = 0
-value
+value = 0
 
 @app.route('/token')
 def token():
