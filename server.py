@@ -89,7 +89,7 @@ def enterqueue():
   else:
     queueSize = ""
     resp = twilio.twiml.Response()
-    resp.dequeue("You will talk to a person", waitUrl="/wait")
+    resp.enqueue("wait2", waitUrl="/wait")
     with resp.dial() as dial:
         dial.queue("wait")
   return str(resp)
