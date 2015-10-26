@@ -72,6 +72,8 @@ def welcome():
 def wait():
   resp = twilio.twiml.Response()
   resp.say("LOL you are %s" % request.form['QueuePosition'])
+  resp.play("http://com.twilio.music.guitars.s3.amazonaws.com/" \
+              "Pitx_-_Long_Winter.mp3")
   return str(resp)
 
 @app.route('/roulette', methods=['GET', 'POST'])
