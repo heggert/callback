@@ -15,7 +15,7 @@ CLIENT = 'jenny'
 
 app = Flask(__name__)
 
-isQueueFull = 0
+queueSize = ""
 
 @app.route('/token')
 def token():
@@ -71,22 +71,23 @@ def welcome():
 @app.route('/wait', methods=['POST'])
 def wait():
   resp = twilio.twiml.Response()
-  resp.say("LOL you are %s" % request.form['QueuePosition'])
+  resp.say("you are %s" % request.form['QueuePosition'])
+  global queueSize
+  queueSize = request.form['QueuePosition']
   resp.play("http://com.twilio.music.guitars.s3.amazonaws.com/" \
               "Pitx_-_Long_Winter.mp3")
   return str(resp)
 
 @app.route('/roulette', methods=['GET', 'POST'])
 def enterqueue():
-  global isQueueFull
+  global queueSize
   resp1 = twilio.twiml.Response()
-  if isQueueFull == 0:
+  #if empty
+  if not queueSize:
     resp = twilio.twiml.Response()
-   # res/p.say("Please hold.")
     resp.enqueue("wait", waitUrl="/wait")
-    isQueueFull = 1
   else:
-    isQueueFull = 0
+    queueSize = ""
     resp = twilio.twiml.Response()
     resp.say("You will talk to a person")
     with resp.dial() as dial:
