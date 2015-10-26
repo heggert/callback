@@ -77,7 +77,6 @@ def wait():
   if int(queueSize) == 1:
     resp.play("http://com.twilio.music.guitars.s3.amazonaws.com/" \
                 "Pitx_-_Long_Winter.mp3")
-  return str(resp)
   else:
     with resp.dial() as dial:
         dial.queue("wait")
