@@ -80,7 +80,7 @@ def enterqueue():
   resp1 = twilio.twiml.Response()
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
-    resp.say("Please hold.")
+   # resp.say("Please hold.")
     resp.enqueue("wait", waitUrl="/wait")
     isQueueFull = 1
   else:
