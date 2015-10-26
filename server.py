@@ -98,8 +98,7 @@ def enterqueue():
 def emptyQueue():
   global queueSize
   queueSize = ""
-  
-
+  return "Call Ended"
 
 
 
