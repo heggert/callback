@@ -70,7 +70,7 @@ def welcome():
   
 @app.route('/wait', methods=['POST'])
 def wait():
-  resp = twiml.Response()
+  resp = twilio.twiml.Response()
   resp.say("LOL you are %s" % request.form['QueuePosition'])
   return str(resp)
 
@@ -80,7 +80,7 @@ def enterqueue():
   resp1 = twilio.twiml.Response()
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
-   # resp.say("Please hold.")
+   # res/p.say("Please hold.")
     resp.enqueue("wait", waitUrl="/wait")
     isQueueFull = 1
   else:
