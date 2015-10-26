@@ -74,9 +74,17 @@ def wait():
   resp.say("you are %s" % request.form['QueuePosition'])
   global queueSize
   queueSize = request.form['QueuePosition']
-  resp.play("http://com.twilio.music.guitars.s3.amazonaws.com/" \
-              "Pitx_-_Long_Winter.mp3")
+  if int(queueSize) == 1:
+    resp.play("http://com.twilio.music.guitars.s3.amazonaws.com/" \
+                "Pitx_-_Long_Winter.mp3")
   return str(resp)
+  else:
+    with resp.dial() as dial:
+        dial.queue("wait")
+  return str(resp)
+  
+    
+  
 
 @app.route('/roulette', methods=['GET', 'POST'])
 def enterqueue():
@@ -90,8 +98,8 @@ def enterqueue():
     queueSize = ""
     resp = twilio.twiml.Response()
     resp.enqueue("wait2", waitUrl="/wait")
-    with resp.dial() as dial:
-        dial.queue("wait")
+   # with resp.dial() as dial:
+   #     dial.queue("wait")
   return str(resp)
 
 
