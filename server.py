@@ -44,7 +44,6 @@ def call():
   """        2. To value specifies target. When call is coming """
   """           from PSTN, To value is ignored and call is     """
   """           routed to client named CLIENT                  """
-  print 'LOLOLO'
   resp = twilio.twiml.Response()
   from_value = request.values.get('From')
   to = request.values.get('To')
@@ -69,7 +68,12 @@ def welcome():
   resp.say("Welcome to Twilio")
   return str(resp)
   
-  
+@app.route('/wait', methods=['POST'])
+def wait():
+  resp = twiml.Response()
+  resp.say("LOL you are %s" % request.form['QueuePosition'])
+  return str(resp)
+
 @app.route('/roulette', methods=['GET', 'POST'])
 def enterqueue():
   global isQueueFull
@@ -77,7 +81,7 @@ def enterqueue():
   if isQueueFull == 0:
     resp = twilio.twiml.Response()
     resp.say("Please hold.")
-    resp.enqueue("wait")
+    resp.enqueue("wait", waitUrl="/wait")
     isQueueFull = 1
   else:
     isQueueFull = 0
