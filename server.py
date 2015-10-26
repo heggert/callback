@@ -71,6 +71,8 @@ def welcome():
 @app.route('/wait', methods=['POST'])
 def wait():
   resp = twilio.twiml.Response()
+  if int(request.form['QueuePosition']) == 1:
+    
   resp.say("you are %s" % request.form['QueuePosition'])
   global queueSize
   queueSize = request.form['QueuePosition']
@@ -89,7 +91,7 @@ def enterqueue():
   else:
     queueSize = ""
     resp = twilio.twiml.Response()
-    resp.say("You will talk to a person")
+    resp.say("You will talk to a person", waitUrl="/wait")
     with resp.dial() as dial:
         dial.queue("wait")
   return str(resp)
