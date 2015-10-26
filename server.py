@@ -71,7 +71,7 @@ def welcome():
 @app.route('/wait', methods=['POST'])
 def wait():
   resp = twilio.twiml.Response()
-  resp.say("you are %s" % request.form['QueuePosition'])
+  resp.say("Please hold.")
   global queueSize
   queueSize = request.form['QueuePosition']
   resp.play("http://com.twilio.music.guitars.s3.amazonaws.com/" \
@@ -89,7 +89,7 @@ def enterqueue():
   else:
     queueSize = ""
     resp = twilio.twiml.Response()
-    resp.say("You will talk to a person")
+    resp.say("You have been connected.")
     with resp.dial() as dial:
         dial.queue("wait")
   return str(resp)
