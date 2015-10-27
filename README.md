@@ -30,7 +30,9 @@ Click the button below to automatically set up the app using your Heroku account
 Testing
 ---
 
-Please open http://your-heroku-web-app.com/token in your browser. You should see a message saying 'Welcome to Twilio!'
+Please open http://your-heroku-web-app.com/token in your browser. 
+
+You should see a message saying 'Welcome to Twilio!'
 
 
 Client Configuration
@@ -46,4 +48,4 @@ Usage
 
 At launch, the client connects to http://your-heroku-web-app.com/token to retrieve its capability token.
 
-The app utilizes the Twilio Queue API to create a series of connections between different people. Everytime someone calls our server, we check if our queue is empty or not. If it's empty, we put the user into the queue. They will listen to a pre-recorded Mp3 while they wait to connect to someone. If the queue isn’t empty, the user is connected to whoever is in the queue, and the queue returns to being empty. The queue then never reaches a size greater than 1! If a user in a queue hangs up, our client app calls the /hangup endpoint which empties the queue. 
+The app utilizes the Twilio Queue API to create a series of connections between different people. Everytime someone calls our server, we check if our queue is empty or not. If it's empty, we put the user into the queue. They will listen to a pre-recorded Mp3 while they wait to connect to someone. If the queue isn’t empty, the user is connected to whoever is in the queue, and the queue returns to being empty. If a user in a queue hangs up, our client app calls the /hangup endpoint which empties the queue. 
