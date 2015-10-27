@@ -30,7 +30,7 @@ Click the button below to automatically set up the app using your Heroku account
 Testing
 ---
 
-Please open http://your-heroku-web-app.com/token in your browser. 
+Please open http://your-heroku-web-app.com/ in your browser. 
 
 You should see a message saying 'Welcome to Twilio!'
 
