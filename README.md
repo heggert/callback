@@ -12,7 +12,7 @@ CallRoulette is our Android Demo for using Twilio Client + Android Studio. This 
 Prerequisites
 ---
 
-Please [sign up](https://www.twilio.com/try-twilio) for a free Twilio account. You will need your Account Sid and Auth Token available in your [Account Dashboard](https://www.twilio.com/user/account/). You will also need to create a [TwiML App](https://www.twilio.com/user/account/apps). Please make sure that you point the TwiML app's Voice Request URL to your web application's public URL, e.g.,  http://companyfoo.com/call.
+Please [sign up](https://www.twilio.com/try-twilio) for a free Twilio account. You will need your Account Sid and Auth Token available in your [Account Dashboard](https://www.twilio.com/user/account/). You will also need to create a [TwiML App](https://www.twilio.com/user/account/apps). Please make sure that you point the TwiML app's Voice Request URL to your web application's public URL, e.g.,  http://companyfoo.com/roulette.
 You will also need a verified phone number to be used as caller ID when placing phone calls.  See the "Verified Caller Ids" section
 under [Numbers](https://www.twilio.com/user/account/phone-numbers)
 tab in your Twilio Account.
