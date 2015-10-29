@@ -38,7 +38,7 @@ You should see a message saying 'Welcome to Twilio!'
 Client Configuration
 ---
 
-In the strings.xml file of your Android Client simply add links to your newly created Heroku server like so
+In the urls.xml file of your Android Client simply add links to your newly created Heroku server like so
 
     <string name="app_capability_url">https://guarded-brook-6452.herokuapp.com/token</string>
     <string name="app_hangup_url">https://guarded-brook-6452.herokuapp.com/hangup</string>
